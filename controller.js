@@ -148,7 +148,6 @@ const list = async (req, res, next) => {
                 id: user.boss_id
             }
         });
-        console.log('boss: ', boss);
         const bossName = boss ? boss.username : null;
         userList = [];
         userList.push({
@@ -163,7 +162,6 @@ const list = async (req, res, next) => {
             });
         }
     }
-    console.log('userlist: ', userList);
     res.status(200).json({
         message: 'List of users fetched successfully.',
         data: userList
