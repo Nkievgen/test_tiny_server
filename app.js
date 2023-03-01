@@ -1,4 +1,5 @@
 const express = require('express');
+
 const {register, login, list, assign} = require('./controller');
 const error = require('./error-handler');
 const sequelize = require('./database');
