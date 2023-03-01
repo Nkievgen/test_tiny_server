@@ -204,6 +204,17 @@ const assign = async (req, res, next) => {
 
     if (!user.admin) {
         const subordinates = await getSubordinates(user);
+        const usersBoss = user.boss_id ? await User.findOne({
+            where: {
+                id: user.boss_id
+            }
+        }) : null;
+        if (usersBoss) {
+            subordinates.push({
+                username: user.username,
+                boss: usersBoss.username
+            });
+        };
         if (subordinates.length === 0) {
             const error = new Error('You are not authorized to assign anyone as you have no subordinates');
             return next(error);
